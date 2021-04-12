@@ -350,8 +350,8 @@ class MouseSnapMillion:
                     )
                     
 
-        paint.color = "00ff004f"
-        draw_crosses()
+        #paint.color = "00ff004f"
+        #draw_crosses()
         paint.color = "ffffffff"
 
         #paint.stroke_width = 1
