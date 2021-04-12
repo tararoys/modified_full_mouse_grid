@@ -13,6 +13,8 @@ letters_background_color = "000000"
 row_highlighter = "ff0000"
 large_number_color ="00ff0044"
 small_letters_color = "ffff5599"
+superblock_background_color = "ff55ff77"
+superbloc_stroke_color = "ffffff"
 
 
 def hx(v: int) -> str:
@@ -217,6 +219,8 @@ class MouseSnapMillion:
         for row in range(0, int(self.rect.height) // superblock_size + 1):
             for col in range(0, int(self.rect.width) // superblock_size + 1):
                 canvas.paint.color = colors[(row + col) % len(colors)] + hx(self.bg_transparency)
+
+                #canvas.paint.color = "ffffff"
                 canvas.paint.style = Paint.Style.FILL
                 blockrect = Rect(
                         col * superblock_size,
@@ -228,6 +232,37 @@ class MouseSnapMillion:
                 canvas.draw_rect(blockrect)
 
                 if skipped_superblock != num:
+
+                    # attempt to change backround color on the superblock chosen 
+
+                    #canvas.paint.color = colors[(row + col) % len(colors)] + hx(self.bg_transparency)
+
+                    canvas.paint.color = superblock_background_color
+                    canvas.paint.style = Paint.Style.FILL
+                    blockrect = Rect(
+                            col * superblock_size,
+                            row * superblock_size,
+                            superblock_size,
+                            superblock_size)
+                    blockrect.right = min(blockrect.right, self.rect.width)
+                    blockrect.bot = min(blockrect.bot, self.rect.height)
+                    canvas.draw_rect(blockrect)
+
+                    canvas.paint.color = superbloc_stroke_color 
+                    canvas.paint.style = Paint.Style.STROKE
+                    canvas.paint.stroke_width = 5
+                    blockrect = Rect(
+                            col * superblock_size,
+                            row * superblock_size,
+                            superblock_size,
+                            superblock_size)
+                    blockrect.right = min(blockrect.right, self.rect.width)
+                    blockrect.bot = min(blockrect.bot, self.rect.height)
+                    canvas.draw_rect(blockrect)
+
+                    #drawing the big number in the background
+
+                    canvas.paint.style = Paint.Style.FILL
                     canvas.paint.textsize = int(superblock_size * 4 / 5)
                     text_rect = canvas.paint.measure_text(str(num))[1]
                     #text_rect.center = blockrect.center
