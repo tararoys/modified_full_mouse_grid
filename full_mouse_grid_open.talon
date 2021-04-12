@@ -1,6 +1,7 @@
-#tag: user.full_mouse_grid_showing
-#and tag: user.full_mouse_grid_enabled
-#-
+tag: user.full_mouse_grid_showing
+and tag: user.full_mouse_grid_enabled
+and mode: sleep
+-
 <user.letter> <user.letter> <number>:
     user.full_grid_select(letter_1 + letter_2, number, "")
     user.full_grid_close()

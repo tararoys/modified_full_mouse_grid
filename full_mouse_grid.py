@@ -20,7 +20,7 @@ mod.list("mg_point_of_compass", desc="point of compass for full mouse grid")
 ctx = Context()
 
 ctx.matches = r"""
-tag: full_mouse_grid_enabled
+tag: user.full_mouse_grid_enabled
 """
 
 # stolen from the race car, this should probably go in a central spot somewhere
@@ -400,12 +400,14 @@ class GridActions:
         mg.show()
         ctx.tags = ["user.full_mouse_grid_showing"]
         print("==== SHOWING GRID NAO ====")
+        actions.speech.disable()
 
     def full_grid_place_window():
         """Places the grid on the currently active window"""
         mg.setup(rect=ui.active_window().rect)
         ctx.tags = ["user.full_mouse_grid_showing"]
         print("==== SHOWING GRID NAO ====")
+        actions.speech.disable()
 
     def full_grid_select_screen(screen: int):
         """Brings up mouse grid"""
@@ -413,12 +415,14 @@ class GridActions:
         mg.show()
         ctx.tags = ["user.full_mouse_grid_showing"]
         print("==== SHOWING GRID NAO ====")
+        actions.speech.disable()
 
     def full_grid_select(letters: str, number: int, compasspoint: str):
         """Jump the mouse to the specified field"""
         mg.jump(letters, number)
         ctx.tags = []
         print("==== NO MORE GRID FOR YOU MY FRIEND ====")
+        actions.speech.enable()
 
     #def grid_narrow_list(digit_list: typing.List[str]):
         #"""Choose fields multiple times in a row"""
@@ -438,6 +442,7 @@ class GridActions:
         ctx.tags = []
         mg.close()
         print("==== NO MORE GRID FOR YOU MY FRIEND ====")
+        actions.speech.enable()
 
     def full_grid_checkers_toggle():
         """Show or hide every other label box so more of the underlying screen content is visible"""

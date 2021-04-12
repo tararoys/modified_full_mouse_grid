@@ -11,3 +11,5 @@ alphabet screen <number>:
 alphabet win:
     user.full_grid_place_window()
     user.full_grid_activate()
+
+   
