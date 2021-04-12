@@ -90,6 +90,7 @@ class MouseSnapMillion:
             self.jump(self.input_so_far)
             self.input_so_far = ""
             self.close()
+            actions.speech.enable()
         if self.mcanvas:
             self.mcanvas.freeze()
             print("updating graphics")
