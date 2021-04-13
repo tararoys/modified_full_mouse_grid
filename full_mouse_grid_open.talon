@@ -2,6 +2,8 @@ tag: user.full_mouse_grid_showing
 and tag: user.full_mouse_grid_enabled
 and mode: user.full_mouse_grid
 -
+
+
 <user.letter> <user.letter> <number>:
     user.full_grid_select(letter_1 + letter_2, number, "")
     user.full_grid_close()
@@ -22,11 +24,11 @@ and mode: user.full_mouse_grid
     user.full_grid_select(letter_1 + letter_2, number, "")
     user.full_grid_close()
 
-partial <user.letter>:
-    user.full_grid_input_partial(letter)
-
-partial <number>:
+^<number>$:
     user.full_grid_input_partial(number)
+
+^<user.letter>$:
+    user.full_grid_input_partial(letter)
 
 alphabet close:
     user.full_grid_close()
