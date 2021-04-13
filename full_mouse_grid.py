@@ -9,12 +9,7 @@ import math, time, string
 
 import typing
 
-letters_background_color = "000000"
-row_highlighter = "ff0000"
-large_number_color ="00ff0044"
-small_letters_color = "ffff5599"
-superblock_background_color = "ff55ff"
-superbloc_stroke_color = "ffffff"
+
 
 
 def hx(v: int) -> str:
@@ -25,8 +20,58 @@ mod = Module()
 mod.tag("full_mouse_grid_showing", desc="Tag indicates whether the full mouse grid is showing")
 mod.tag("full_mouse_grid_enabled", desc="Tag enables the full mouse grid commands.")
 mod.list("mg_point_of_compass", desc="point of compass for full mouse grid")
-ctx = Context()
+
 mod.mode("full_mouse_grid", desc="indicate the full mouse grid is active")
+
+setting_letters_background_color = mod.setting(
+    "full_mouse_grid_letters_background_color",
+    type=str,
+    default="000000",
+    desc="set the background color of the small letters in the full mouse grid",
+)
+
+setting_row_highlighter = mod.setting(
+    "full_mouse_grid_row_highlighter",
+    type=str,
+    default="ff0000",
+    desc="set the color of the row to highlight",
+)
+
+setting_large_number_color = mod.setting(
+    "full_mouse_grid_large_number_color",
+    type=str,
+    default="00ffff",
+    desc="sets the color of the large number label in the superblock",
+)
+
+setting_small_letters_color = mod.setting(
+    "full_mouse_grid_small_letters_color",
+    type=str,
+    default="ffff55",
+    desc="sets the color of the small letters label in the superblock",
+)
+
+setting_superblock_background_color = mod.setting(
+    "full_mouse_grid_small_letters_color",
+    type=str,
+    default="ff55ff",
+    desc="sets the background color of the superblock",
+)
+
+setting_superblock_stroke_color = mod.setting(
+    "full_mouse_grid_small_letters_color",
+    type=str,
+    default="ffffff",
+    desc="sets the background color of the superblock",
+)
+
+
+
+
+
+
+
+ctx = Context()
 
 ctx.matches = r"""
 tag: user.full_mouse_grid_enabled
@@ -245,7 +290,7 @@ class MouseSnapMillion:
 
                     #canvas.paint.color = colors[(row + col) % len(colors)] + hx(self.bg_transparency)
 
-                    canvas.paint.color = superblock_background_color + hx(self.bg_transparency)
+                    canvas.paint.color = setting_superblock_background_color.get() + hx(self.bg_transparency)
                     canvas.paint.style = Paint.Style.FILL
                     blockrect = Rect(
                             col * superblock_size,
@@ -256,7 +301,7 @@ class MouseSnapMillion:
                     blockrect.bot = min(blockrect.bot, self.rect.height)
                     canvas.draw_rect(blockrect)
 
-                    canvas.paint.color = superbloc_stroke_color 
+                    canvas.paint.color = setting_superblock_stroke_color.get() + hx(self.bg_transparency)
                     canvas.paint.style = Paint.Style.STROKE
                     canvas.paint.stroke_width = 5
                     blockrect = Rect(
@@ -276,7 +321,7 @@ class MouseSnapMillion:
                     #text_rect.center = blockrect.center
                     text_rect.x = blockrect.x
                     text_rect.y = blockrect.y
-                    canvas.paint.color = large_number_color
+                    canvas.paint.color = setting_large_number_color.get() + hx(self.bg_transparency)
                     canvas.draw_text(
                             str(num),
                             text_rect.x,
@@ -312,12 +357,12 @@ class MouseSnapMillion:
                         background_rect = background_rect.inset(-4)
                         if (self.input_so_far.startswith(letters[row % len(letters)]) or
                                 len(self.input_so_far) > 1 and self.input_so_far.endswith(letters[col % len(letters)])):
-                            canvas.paint.color = row_highlighter + hx(self.label_transparency)
+                            canvas.paint.color = setting_row_highlighter.get() + hx(self.label_transparency)
                         else:
-                            canvas.paint.color = letters_background_color + hx(self.label_transparency)
+                            canvas.paint.color = setting_letters_background_color.get() + hx(self.label_transparency)
                             canvas.paint.style = Paint.Style.FILL
                         canvas.draw_rect(background_rect)
-                        canvas.paint.color = small_letters_color
+                        canvas.paint.color = setting_small_letters_color.get() +hx(self.label_transparency)
                         #paint.style = Paint.Style.STROKE
                         canvas.draw_text(
                             text_string,
