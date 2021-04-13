@@ -66,11 +66,6 @@ setting_superblock_stroke_color = mod.setting(
 )
 
 
-
-
-
-
-
 ctx = Context()
 
 ctx.matches = r"""
