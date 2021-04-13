@@ -1,6 +1,7 @@
 tag: user.full_mouse_grid_showing
 and tag: user.full_mouse_grid_enabled
 and mode: user.full_mouse_grid
+and not mode: sleep
 -
 
 
