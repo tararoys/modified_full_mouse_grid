@@ -86,6 +86,8 @@ class MouseSnapMillion:
         self.input_so_far = ""
 
     def add_partial_input(self, letter: str):
+        
+        # this logic swaps around which superblock is selected. 
         if letter.isdigit():
             print("user inputted a number, switching superblock")
             self.default_superblock = int(letter) - 1
@@ -93,13 +95,18 @@ class MouseSnapMillion:
                 self.mcanvas.freeze()
                 print("updating graphics")
             return
+
+        #this logic collects letters.  you can only collect up to two letters. 
         self.input_so_far += letter
         print("input so far: " + self.input_so_far)
         if len(self.input_so_far) >= 2:
             self.jump(self.input_so_far)
             self.input_so_far = ""
-            self.close()
-            full_mouse_grid_mode_disable()
+
+            # this next line fixes a bug where a tag was not deactivated and a mode was not being switched properly.  However, I think this stuff might be best properly stached in the object's close functionality, because it is triggered when you close the grid. 
+
+            actions.user.full_grid_close()
+
         if self.mcanvas:
             self.mcanvas.freeze()
             print("updating graphics")
