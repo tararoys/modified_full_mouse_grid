@@ -13,7 +13,7 @@ letters_background_color = "000000"
 row_highlighter = "ff0000"
 large_number_color ="00ff0044"
 small_letters_color = "ffff5599"
-superblock_background_color = "ff55ff77"
+superblock_background_color = "ff55ff"
 superbloc_stroke_color = "ffffff"
 
 
@@ -104,14 +104,14 @@ class MouseSnapMillion:
             self.mcanvas.freeze()
             print("updating graphics")
 
-    def adjust_bg_transparency(amount: int):
+    def adjust_bg_transparency(self, amount: int):
         self.bg_transparency += amount
         if self.bg_transparency < 0: self.bg_transparency = 0
         if self.bg_transparency > 255: self.bg_transparency = 255
         if self.mcanvas:
             self.mcanvas.freeze()
 
-    def adjust_label_transparency(amount: int):
+    def adjust_label_transparency(self, amount: int):
         self.label_transparency += amount
         if self.label_transparency < 0: self.label_transparency = 0
         if self.label_transparency > 255: self.label_transparency = 255
@@ -238,7 +238,7 @@ class MouseSnapMillion:
 
                     #canvas.paint.color = colors[(row + col) % len(colors)] + hx(self.bg_transparency)
 
-                    canvas.paint.color = superblock_background_color
+                    canvas.paint.color = superblock_background_color + hx(self.bg_transparency)
                     canvas.paint.style = Paint.Style.FILL
                     blockrect = Rect(
                             col * superblock_size,
