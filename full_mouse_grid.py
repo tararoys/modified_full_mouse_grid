@@ -52,14 +52,14 @@ setting_small_letters_color = mod.setting(
 )
 
 setting_superblock_background_color = mod.setting(
-    "full_mouse_grid_small_letters_color",
+    "full_mouse_grid_superblock_background_color",
     type=str,
     default="ff55ff",
     desc="sets the background color of the superblock",
 )
 
 setting_superblock_stroke_color = mod.setting(
-    "full_mouse_grid_small_letters_color",
+    "full_mouse_grid_superblock_stroke_color",
     type=str,
     default="ffffff",
     desc="sets the background color of the superblock",
