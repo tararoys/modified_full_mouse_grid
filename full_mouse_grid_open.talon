@@ -40,16 +40,16 @@ alphabet rulers:
     user.full_grid_rulers_toggle()
 
 add noodles:
-    user.full_grid_adjust_label_transparency(8)
+    user.full_grid_adjust_label_transparency(50)
 
 eat noodles:
-    user.full_grid_adjust_label_transparency(-8)
+    user.full_grid_adjust_label_transparency(-50)
 
 thicker broth:
-    user.full_grid_adjust_bg_transparency(8)
+    user.full_grid_adjust_bg_transparency(50)
 
 thinner broth:
-    user.full_grid_adjust_bg_transparency(-8)
+    user.full_grid_adjust_bg_transparency(-50)
 
 what the [heck | fuck]:
     app.notify("say alphabet close to get rid of the alphabet soup")
